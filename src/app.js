@@ -14,19 +14,20 @@ let pronoun = ["the", "our"];
 let adj = ["great", "big"];
 let noun = ["jogger", "racoon"];
 
-function getRandomElement(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function generateRandomString(arr1, arr2, arr3) {
-  let part1 = getRandomElement(arr1);
-  let part2 = getRandomElement(arr2);
-  let part3 = getRandomElement(arr3);
-
-  return part1 + "" + part2 + "" + part3 + ".com";
+function generateAllCombinations(arr1, arr2, arr3) {
+  let combinations = [];
+  for (let i = 0; i < arr1.length; i++) {
+    for (let j = 0; j < arr2.length; j++) {
+      for (let k = 0; k < arr3.length; k++) {
+        combinations.push(arr1[i] + "" + arr2[j] + arr3[k] + ".com");
+      }
+    }
+  }
+  return combinations;
 }
 
 function displayResult() {
-  let domain = generateRandomString(pronoun, adj, noun);
-  document.getElementById("theDomain").innerHTML = domain;
+  let domain = generateAllCombinations(pronoun, adj, noun);
+  let result = domain.join("<br>");
+  document.getElementById("theDomain").innerHTML = result;
 }
